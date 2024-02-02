@@ -28,10 +28,10 @@ Things you may want to cover:
 | nickname               | string | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
-| last_name              | text | null: false |
-| first_name              | text | null: false |
-| last_name_kana              | text | null: false |
-| first_name_kana              | text | null: false |
+| last_name              | string | null: false |
+| first_name              | string | null: false |
+| last_name_kana              | string | null: false |
+| first_name_kana              | string | null: false |
 | birth_data              | date | null: false |
 
 has_many :items
@@ -41,13 +41,13 @@ has_many :orders
 # itemsテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item_name              | string | null: false, unique: true |
+| item_name              | string | null: false|
 | item_info | text | null: false |
 | item_category             | integer | null: false |
-| item_sales-status              |integer | null: false |
-| item_shipping-fee-status              | integer | null: false |
+| item_sales_status              |integer | null: false |
+| item_shipping_fee_status              | integer | null: false |
 | item_prefecture              | integer | null: false |
-| item_scheduled-delivery              | integer | null: false |
+| item_scheduled_delivery              | integer | null: false |
 | item_price              | integer | null: false |
 
 
@@ -57,8 +57,8 @@ has_one :order
 # ordersテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item            | references | not null:  foreign_key: true |
-| user              | references | not null:foreign_key: true |
+| item            | references |foreign_key: true |
+| user              | references | foreign_key: true |
 
 belongs_to :user
 belongs_to :item
@@ -73,6 +73,6 @@ has_one :address
 | addresses              | string | null: false |
 | building              | string |         |
 | phone_number              | string | null: false |
-| order              | references | not null:foreign_key: true |
+| order              | references | foreign_key: true |
 
 belongs_to :order
