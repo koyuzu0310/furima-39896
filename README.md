@@ -43,12 +43,13 @@ has_many :orders
 | ------------------ | ------ | ----------- |
 | item_name              | string | null: false|
 | item_info | text | null: false |
-| item_category             | integer | null: false |
-| item_sales_status              |integer | null: false |
-| item_shipping_fee_status              | integer | null: false |
-| item_prefecture              | integer | null: false |
-| item_scheduled_delivery              | integer | null: false |
+| item_category_id             | integer | null: false |
+| item_sales_status_id             |integer | null: false |
+| item_shipping_fee_status_id              | integer | null: false |
+| item_prefecture_id              | integer | null: false |
+| item_scheduled_delivery_id              | integer | null: false |
 | item_price              | integer | null: false |
+| user              | references | foreign_key: true |
 
 
 belongs_to :user
@@ -57,8 +58,8 @@ has_one :order
 # ordersテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item            | references |foreign_key: true |
-| user              | references | foreign_key: true |
+| item            | references |not null foreign_key: true |
+| user              | references | not null foreign_key: true |
 
 belongs_to :user
 belongs_to :item
@@ -68,11 +69,11 @@ has_one :address
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 |postal_code             | string | null: false |
-| item_prefecture              | integer | null: false |
+| item_prefecture_id             | integer | null: false |
 | city             | string | null: false |
 | addresses              | string | null: false |
 | building              | string |         |
 | phone_number              | string | null: false |
-| order              | references | foreign_key: true |
+| order               | references |not null foreign_key: true |
 
 belongs_to :order
