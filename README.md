@@ -28,55 +28,51 @@ Things you may want to cover:
 | nickname               | string | null: false |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false |
-| encrypted_password             | string | null: false |
-| lase_name              | name | null: false |
-| first_name              | name | null: false |
-| last_name_kana              | name | null: false |
-| first_name_kana              | name | null: false |
+| last_name              | text | null: false |
+| first_name              | text | null: false |
+| last_name_kana              | text | null: false |
+| first_name_kana              | text | null: false |
 | birth_data              | date | null: false |
 
 has_many :items
-has_many :order
+has_many :orders
 
 
 # itemsテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | item_name              | string | null: false, unique: true |
-| item_info | string | null: false |
-| item_category             | text | null: false |
-| item_sales-status              | string | null: false |
-| item_shipping-fee-status              | string | null: false |
-| item_prefecture              | string | null: false |
-| item_scheduled-delivery              | string | null: false |
+| item_info | text | null: false |
+| item_category             | integer | null: false |
+| item_sales-status              |integer | null: false |
+| item_shipping-fee-status              | integer | null: false |
+| item_prefecture              | integer | null: false |
+| item_scheduled-delivery              | integer | null: false |
 | item_price              | integer | null: false |
 
 
 belongs_to :user
-belongs_one :order
+has_one :order
 
-# orderテーブル
+# ordersテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| items              | references | not null:  外部キー |
-| user              | references | not null: 外部キー |
+| item            | references | not null:  foreign_key: true |
+| user              | references | not null:foreign_key: true |
 
 belongs_to :user
 belongs_to :item
 has_one :address
 
-# addressテーブル
+# addressesテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| number-form              | string | null: false |
-| expiry-form              | string | null: false, unique: true |
-| cvc_form | string | null: false |
 |postal_code             | string | null: false |
-| prefecture              | string | null: false |
+| item_prefecture              | integer | null: false |
 | city             | string | null: false |
 | addresses              | string | null: false |
-| building              | string | null: false |
+| building              | string |         |
 | phone_number              | string | null: false |
-| button             | string | null: false |
+| order              | references | not null:foreign_key: true |
 
-belongs_to : order
+belongs_to :order
