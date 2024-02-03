@@ -49,7 +49,7 @@ has_many :orders
 | item_prefecture_id              | integer | null: false |
 | item_scheduled_delivery_id              | integer | null: false |
 | item_price              | integer | null: false |
-| user              | references | foreign_key: true |
+| user              | references |  not null foreign_key: true |
 
 
 belongs_to :user
@@ -58,8 +58,8 @@ has_one :order
 # ordersテーブル
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| item            | references |not null foreign_key: true |
-| user              | references | not null foreign_key: true |
+| item            | references |null:false foreign_key: true |
+| user              | references | null:false foreign_key: true |
 
 belongs_to :user
 belongs_to :item
@@ -71,9 +71,9 @@ has_one :address
 |postal_code             | string | null: false |
 | item_prefecture_id             | integer | null: false |
 | city             | string | null: false |
-| addresses              | string | null: false |
+| address              | string | null: false |
 | building              | string |         |
 | phone_number              | string | null: false |
-| order               | references |not null foreign_key: true |
+| order               | references |null: false foreign_key: true |
 
 belongs_to :order
