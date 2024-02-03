@@ -49,7 +49,7 @@ has_many :orders
 | item_prefecture_id              | integer | null: false |
 | item_scheduled_delivery_id              | integer | null: false |
 | item_price              | integer | null: false |
-| user              | references |  not null foreign_key: true |
+| user              | references |  null: false foreign_key: true |
 
 
 belongs_to :user
