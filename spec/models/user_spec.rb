@@ -4,7 +4,15 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-
+  describe 'ユーザー新規登録' do
+    before do
+      @user = FactoryBot.build(:user) # FactoryBotでテスト用のUserオブジェクトを作成
+    end
+    context '新規登録できる場合' do
+      it '必要事項を全て入力すると新規登録できる' do
+        expect(@user).to be_valid
+      end
+    end
 
 
   describe 'ユーザー新規登録' do
@@ -100,6 +108,13 @@ RSpec.describe User, type: :model do
     @user.valid?
     expect(@user.errors.full_messages).to include('First name kana is invalid')
   end
+
+  it '生年月日が空だと登録できない' do
+    @user.birth_data = ''
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Birth data can't be blank")
+  end
   
+end
 end
 end
