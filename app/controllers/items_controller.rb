@@ -1,11 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :configure_permitted_parameters, if: :devise_controller?
+
  before_action :authenticate_user!, except: [:index, :show]
 
-  def new
-    @item = Item.new
-  end
- 
 
   def new
     @item = Item.new
@@ -24,17 +20,12 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:image, :item_name, :item_info, :item_category_id, :item_sales_status_id,
-      :item_shipping_fee_status_id, :item_prefecture_id, :item_scheduled_delivery_id, :item_price)
-  end
-
-  def item_params
-    params.require(:item).permit(:image, :item_name, :item_info, :item_category_id, :item_sales_status_id,
       :item_shipping_fee_status_id, :item_prefecture_id, :item_scheduled_delivery_id, :item_price).merge(user_id: current_user.id)
   end
 
  
-
- def edit
-  @item = Item.find(params[:id])
-end
+#今回の機能ではまだ使わないためこの状態にする
+ #def edit
+  #@item = Item.find(params[:id])
+#end
 end
