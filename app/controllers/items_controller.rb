@@ -2,6 +2,19 @@ class ItemsController < ApplicationController
 
  before_action :authenticate_user!, except: [:index, :show]
 
+ def edit
+  @item = Item.find(params[:id])
+end
+
+
+ def update
+  item = Item.find(params[:id])
+  item.update(item_params)
+  redirect_to root_path
+end
+
+ 
+
  def show
   @item = Item.find(params[:id])
  end
@@ -29,9 +42,5 @@ end
       :item_shipping_fee_status_id, :item_prefecture_id, :item_scheduled_delivery_id, :item_price).merge(user_id: current_user.id)
   end
 
- 
-#今回の機能ではまだ使わないためこの状態にする
- #def edit
-  #@item = Item.find(params[:id])
-#end
+
 end
