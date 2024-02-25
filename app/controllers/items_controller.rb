@@ -25,11 +25,12 @@ end
 def show
 end
 
-def edit
-  if @item.destroy
-    redirect_to root_path
+  def edit
+    if current_user != @item.user
+      redirect_to root_path
+    end
   end
-end
+
 
 
  def update
