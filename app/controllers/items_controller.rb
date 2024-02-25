@@ -1,7 +1,7 @@
 #綺麗に直したやつ（edit　update 動く内容のものにへんこうしている。）
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
  before_action :contributor_confirmation, only: [:edit, :update]
  
  def index
@@ -26,7 +26,7 @@ def show
 end
 
 def edit
-  if current_user != @item.user
+  if @item.destroy
     redirect_to root_path
   end
 end
@@ -40,7 +40,13 @@ end
   end
 end
 
-
+def destroy
+  if @item.destroy
+    redirect_to root_path
+else
+  render :show
+  end
+end
 
 private
   def item_params
@@ -56,8 +62,4 @@ def contributor_confirmation
 set_item
   redirect_to action: :index unless current_user == @item&.user
 end
-
-
 end
-
-
