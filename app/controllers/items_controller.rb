@@ -16,7 +16,7 @@ end
  def create
   @item = Item.new(item_params)
   if @item.save
-    redirect_to item_path
+    redirect_to root_path
   else
     render :new, status: :unprocessable_entity
   end
