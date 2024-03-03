@@ -1,4 +1,3 @@
-#綺麗に直したやつ（edit　update 動く内容のものにへんこうしている。）
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
   before_action :set_item, only: [:edit, :show, :update, :destroy]

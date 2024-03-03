@@ -9,8 +9,8 @@
     <div class="item-img-content">
       <%= image_tag @item.image, class:"item-image",size: "600x500"%>
       <%# 商品が売れている場合は、sold outを表示しましょう 商品購入機能実装後に使う%>
-       <%# if  item.orders != nil %>   
-              <%#div class='sold-out'>   
+       <% if  @item.order != nil %>   
+              <div class='sold-out'>   
                 <span>Sold Out!!</span> 
               </div>    
             <% end %>
@@ -30,7 +30,7 @@
 <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
     <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
   <% else %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+   <%= link_to "購入画面に進む", item_orders_path(@item), data: { turbo: false }, class:"item-red-btn"%>
   <% end %>
 <% end %>
 
