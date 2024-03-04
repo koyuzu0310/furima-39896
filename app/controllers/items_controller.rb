@@ -1,7 +1,6 @@
-#綺麗に直したやつ（edit　update 動く内容のものにへんこうしている。）
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :set_item, only: [:edit,:show,:update, :destroy]
  before_action :contributor_confirmation, only: [:edit, :update]
  
  def index
@@ -16,7 +15,7 @@ end
  def create
   @item = Item.new(item_params)
   if @item.save
-    redirect_to item_path
+    redirect_to root_path
   else
     render :new, status: :unprocessable_entity
   end
@@ -26,7 +25,7 @@ def show
 end
 
   def edit
-    if current_user != @item.user
+    if ! @item.order.nil?
       redirect_to root_path
     end
   end
