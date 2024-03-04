@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show,]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :set_item, only: [:edit,:show,:update, :destroy]
  before_action :contributor_confirmation, only: [:edit, :update]
  
  def index
@@ -17,7 +17,7 @@ end
   if @item.save
     redirect_to root_path
   else
-    render :new, status: :unprocessable_entity
+    render :new, status:
   end
 end
 
@@ -25,8 +25,10 @@ def show
 end
 
   def edit
-    if current_user != @item.user
+    if current_user != @item.user || ! @item.order.nil?
       redirect_to root_path
+    #else
+      #redirect_to root_path @item.order.nil?
     end
   end
 
