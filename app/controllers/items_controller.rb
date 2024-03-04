@@ -26,7 +26,6 @@ end
 
   def edit
     if ! @item.order.nil?
-      #current_user != @item.user || ! @item.order.nil?
       redirect_to root_path
     end
   end
