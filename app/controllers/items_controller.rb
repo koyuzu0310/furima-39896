@@ -17,7 +17,7 @@ end
   if @item.save
     redirect_to root_path
   else
-    render :new, status:
+    render :new, status: :unprocessable_entity
   end
 end
 
@@ -25,7 +25,8 @@ def show
 end
 
   def edit
-    if current_user != @item.user || ! @item.order.nil?
+    if ! @item.order.nil?
+      #current_user != @item.user || ! @item.order.nil?
       redirect_to root_path
     end
   end
