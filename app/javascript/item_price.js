@@ -6,7 +6,7 @@ const price = () => {
 
     if (!isNaN(price)) {
       const taxPrice = Math.floor(price * 0.1);
-      const profit = Math.floor(price * 0.9);
+      const profit = Math.floor(price - taxPrice);
 
       document.getElementById("add-tax-price").textContent = taxPrice;
       document.getElementById("profit").textContent = profit;
